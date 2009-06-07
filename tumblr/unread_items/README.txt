@@ -5,4 +5,5 @@ Tumblr Unread Items
 - atmega168
    Souce code of microComputer
 - schematic
-   Schematic of this instrument
+   Schematic of this device
+   *.ce3 file format is for BSch3V: http://www.suigyodo.com/online/schsoft.htm
