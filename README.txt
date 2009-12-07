@@ -7,3 +7,8 @@ There are some devices using AVR microcomputer.
 - tumblr
    - unread_items
        a Device to display the num of unread items on your tumblr dashboard on LCD.
+
+- melody
+   - piezoelectricbuzzer
+       a Melody device with piezoelectric buzzer
+
