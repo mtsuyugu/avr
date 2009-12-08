@@ -6,6 +6,6 @@
 
 void sw_init();
 uint8_t sw_get();
-
+void sw_check_port(void);
 
 #endif /* SWITCH_H */

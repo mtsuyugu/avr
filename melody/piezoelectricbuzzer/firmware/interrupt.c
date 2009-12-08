@@ -1,5 +1,6 @@
 #include <avr/interrupt.h>
 #include "led.h"
+#include "switch.h"
 #include "timer.h"
 #include "table.h"
 #include "sound_ctlr.h"
@@ -19,3 +20,6 @@ ISR(TIMER0_COMP_vect){
    }
 }
 
+ISR(TIMER2_COMP_vect){
+   sw_check_port();
+}

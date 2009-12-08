@@ -57,6 +57,7 @@ int main(void) {
          continue;
       }
       if( sw_get() == SW_ON ){
+         periodic_timer_reset();
          playing ^= 1;
          if( playing ){
             if( sound_get_position() != 0 ){
