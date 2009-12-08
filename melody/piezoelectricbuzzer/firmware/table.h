@@ -36,7 +36,7 @@
 #define n0  64 // whole note
 
 #define n12 80 // tied dotted half note and half note 
-#define n14 60 // tied dotted half note and quarter note
+#define n14 64 // tied dotted half note and quarter note
 
 #define NOTE_UNIT 2 // 2 byte/note 
 #define SCORE_DOREMI 0
