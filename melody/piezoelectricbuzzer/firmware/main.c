@@ -30,15 +30,17 @@ int main(void) {
    uint8_t playing = 0;
    pitch_timer_init();
    note_timer_init();
+   periodic_timer_init();
    sw_init();
    led_init();
    buzzer_init();
 
-   sei();
-
    /* S/W initialize */
    uint8_t *table = get_score(SCORE);
    sound_ctlr_init( table, BPM );
+
+   sei();
+
    led_set(1);
 
    /* main loop */
