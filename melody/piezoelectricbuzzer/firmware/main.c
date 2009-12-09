@@ -44,6 +44,7 @@ int main(void) {
    led_set(1);
 
    /* main loop */
+   static uint8_t previous = SW_OFF;
    while(1){
       if( playing && is_note_end() ){
          if( is_score_end() ){
@@ -59,6 +60,10 @@ int main(void) {
          continue;
       }
       if( sw_get() == SW_ON ){
+         if( previous == SW_ON ){
+            continue;
+         }
+         previous = SW_ON;
          periodic_timer_reset();
          playing ^= 1;
          if( playing ){
@@ -73,6 +78,9 @@ int main(void) {
             set_buzzer_output(0);
          }
          continue;
+      }
+      else{
+         previous = SW_OFF;
       }
    }
 

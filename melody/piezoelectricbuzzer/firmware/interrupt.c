@@ -21,5 +21,13 @@ ISR(TIMER0_COMP_vect){
 }
 
 ISR(TIMER2_COMP_vect){
-   sw_check_port();
+   ++sw_count;
 }
+
+ISR(INT0_vect){
+   sw_now = sw_get_port();
+   periodic_timer_stop();
+   periodic_timer_reset();
+   periodic_timer_start();
+}
+
