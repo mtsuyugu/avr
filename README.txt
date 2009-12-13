@@ -1,6 +1,12 @@
 
 There are some devices using AVR microcomputer.
 
+- adc
+   - acceleration_sensor
+       a Device to display a value from 3-axis acceleration sensor
+         - LCD: SC1602BS
+         - 3-axis acceleration: Freescale MMA7361L
+
 - air
    libraries for PC-side applications
 
