@@ -17,7 +17,15 @@
 DEVICE     = atmega32
 CLOCK      = 1000000
 PROGRAMMER = -c stk500v2 -P usb
-OBJECTS    = main.o table.o switch.o led.o timer.o buzzer.o interrupt.o sound_ctlr.o
+OBJECTS    = main.o \
+             table.o \
+             switch.o \
+             led.o \
+             timer.o \
+             buzzer.o \
+             interrupt.o \
+             sound_ctlr.o \
+
 FUSES      = -U hfuse:w:0x99:m -U lfuse:w:0xe1:m
 # ATMega8 fuse bits (fuse bits for other devices are different!):
 # Example for 8 MHz internal oscillator

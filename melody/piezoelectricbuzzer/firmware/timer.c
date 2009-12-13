@@ -1,4 +1,5 @@
 #include <avr/io.h>
+#include "macro.h"
 #include "timer.h"
 
 static uint16_t note_count = 0;
@@ -26,8 +27,8 @@ void pitch_timer_set_counter(uint16_t count){
  * 16bit-timer/counter1 start(prescale:none)
  */
 void pitch_timer_start(void){
-   TIMSK |= _BV(OCIE1A);
-   TCCR1B |= _BV(CS10);
+   sbi(TIMSK, _BV(OCIE1A));
+   sbi(TCCR1B, _BV(CS10));
 }
 
 /**
@@ -35,8 +36,8 @@ void pitch_timer_start(void){
  * 16bit-timer/counter1 interrupt disabled
  */
 void pitch_timer_stop(void){
-   TCCR1B &= ~_BV(CS10);
-   TIMSK &= ~_BV(OCIE1A);
+   cbi(TCCR1B, _BV(CS10));
+   cbi(TIMSK, _BV(OCIE1A));
 }
 
 /**
@@ -44,7 +45,7 @@ void pitch_timer_stop(void){
  *  - set CTC mode
  */
 void note_timer_init(void){
-   TCCR0 |= _BV(WGM01);
+   sbi(TCCR0, _BV(WGM01));
 }
 
 /**
@@ -71,8 +72,8 @@ uint8_t note_counter_increment(void){
  * 8bit-timer/counter0 start(prescale:1/64)
  */
 void note_timer_start(){
-   TIMSK |= _BV(OCIE0);
-   TCCR0 |= _BV(CS01) | _BV(CS00);
+   sbi(TIMSK, _BV(OCIE0));
+   sbi(TCCR0, _BV(CS01) | _BV(CS00));
 }
 
 /**
@@ -80,8 +81,8 @@ void note_timer_start(){
  * 8bit-timer/counter1 interrupt disabled
  */
 void note_timer_stop(){
-   TCCR0 &= ~(_BV(CS01) | _BV(CS00));
-   TIMSK &= ~_BV(OCIE0);
+   cbi(TCCR0, _BV(CS01) | _BV(CS00));
+   cbi(TIMSK, _BV(OCIE0));
 }
 
 /**
@@ -89,7 +90,7 @@ void note_timer_stop(){
  *  - set CTC mode
  */
 void periodic_timer_init(void){
-   TCCR2 |= _BV(WGM21);
+   sbi(TCCR2, _BV(WGM21));
 }
 
 /**
@@ -106,8 +107,8 @@ void periodic_timer_reset(void){
  * 8bit-timer/counter 2 start(prescale:1/8)
  */
 void periodic_timer_start(void){
-   TIMSK |= _BV(OCIE2);
-   TCCR2 |= _BV(CS21);
+   sbi(TIMSK, _BV(OCIE2));
+   sbi(TCCR2, _BV(CS21));
 }
 
 /**
@@ -115,6 +116,6 @@ void periodic_timer_start(void){
  * 8bit-timer/counter 2 interrupt disabled
  */
 void periodic_timer_stop(void){
-   TCCR2 &= ~_BV(CS21);
-   TIMSK &= ~_BV(OCIE2);
+   cbi(TCCR2, _BV(CS21));
+   cbi(TIMSK, _BV(OCIE2));
 }

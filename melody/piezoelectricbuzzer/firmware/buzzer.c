@@ -1,16 +1,17 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include "macro.h"
 
 void buzzer_init(void){
-   DDRD |= _BV(DDD5);
+   sbi(DDRD, _BV(DDD6));
 }
 
 void set_buzzer_output(uint8_t onoff ){
    if( onoff ){
-      PORTD |= _BV(PORTD5);
+      sbi(PORTD, _BV(PORTD6));
    }
    else{
-      PORTD &= ~_BV(PORTD5);
+      cbi(PORTD, _BV(PORTD6));
    }
 }
 

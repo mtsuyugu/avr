@@ -4,6 +4,8 @@
 // logical state
 #define SW_OFF 0
 #define SW_ON 1
+#define SW_OFF_CONT 2
+#define SW_ON_CONT 3
 
 // physical level
 #define SW_PH_ON 0  // active low

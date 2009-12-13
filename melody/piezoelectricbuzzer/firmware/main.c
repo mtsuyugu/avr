@@ -38,34 +38,17 @@ int main(void) {
    /* S/W initialize */
    uint8_t *table = get_score(SCORE);
    sound_ctlr_init( table, BPM );
-
-   sei();
-
    led_set(1);
 
+   sei();
+   
    /* main loop */
-   static uint8_t previous = SW_OFF;
    while(1){
-      if( playing && is_note_end() ){
-         if( is_score_end() ){
-            // 曲の最後まで鳴らし終わった
-            set_buzzer_output(0);
-            sound_reset_position();
-            playing = 0;
-         }
-         else{
-            // 次の音符をならす
-            sound_next();
-         }
-         continue;
-      }
-      if( sw_get() == SW_ON ){
-         if( previous == SW_ON ){
-            continue;
-         }
-         previous = SW_ON;
-         periodic_timer_reset();
+      uint8_t sw_status = sw_get();
+      switch( sw_status ){
+      case SW_ON:
          playing ^= 1;
+         led_toggle();
          if( playing ){
             if( sound_get_position() != 0 ){
                // 曲の途中で止まっていたのが再開されたとき
@@ -78,9 +61,27 @@ int main(void) {
             set_buzzer_output(0);
          }
          continue;
+      case SW_OFF:
+         break;
+      case SW_ON_CONT:
+         break;
+      case SW_OFF_CONT:
+         break;
+      default:
+         break; /* never reached */
       }
-      else{
-         previous = SW_OFF;
+      if( playing && is_note_end() ){
+         if( is_score_end() ){
+            // 曲の最後まで鳴らし終わった
+            set_buzzer_output(0);
+            sound_reset_position();
+            playing = 0;
+         }
+         else{
+            // 次の音符をならす
+            sound_next();
+         }
+         continue;
       }
    }
 
