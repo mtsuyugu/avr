@@ -48,7 +48,6 @@ int main(void) {
       switch( sw_status ){
       case SW_ON:
          playing ^= 1;
-         led_toggle();
          if( playing ){
             if( sound_get_position() != 0 ){
                // 曲の途中で止まっていたのが再開されたとき

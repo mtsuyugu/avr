@@ -14,7 +14,7 @@ ISR(TIMER1_COMPA_vect){
 ISR(TIMER0_COMP_vect){
    if( note_counter_increment() ){
       note_count_reset(); // これはいらないかも
-//      led_toggle();
+      led_toggle();
       sound_stop();
       sound_increment();
    }
