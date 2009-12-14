@@ -34,10 +34,10 @@ int main(void) {
    led_init();
 
    /* S/W initialize */
-   lcd_position(0,0);
    lcd_put_str("X    Y    Z");
-   led_set(1);
    switch_controller_add_handler( SW_ON, adc_controller_handle_switch );
+
+   led_set(1);
 
    sei();
 
