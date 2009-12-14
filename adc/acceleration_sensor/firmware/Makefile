@@ -23,7 +23,9 @@ OBJECTS    = main.o \
              timer.o \
              interrupt.o \
              lcd.o \
-             adc.o
+             adc.o \
+             switch_controller.o \
+             adc_controller.o
 
 FUSES      = -U hfuse:w:0x99:m -U lfuse:w:0xe1:m
 # ATMega8 fuse bits (fuse bits for other devices are different!):

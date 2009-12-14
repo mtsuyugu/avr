@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <avr/io.h>
 #include "macro.h"
 #include "lcd.h"
 

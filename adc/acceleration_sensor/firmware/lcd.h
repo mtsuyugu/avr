@@ -5,8 +5,7 @@
  * SC1602 LCD コントローラ制御用ライブラリ
  ************************************************************/
 
-#include <stdio.h>
-#include <stdint.h>
+#include "common.h"
 
 #define LCD_BLANK "                "
 

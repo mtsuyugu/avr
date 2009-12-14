@@ -1,4 +1,3 @@
-#include <avr/io.h>
 #include "macro.h"
 #include "adc.h"
 

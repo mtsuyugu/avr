@@ -6,7 +6,9 @@
 #include "timer.h"
 
 ISR(TIMER2_COMP_vect){
-   ++sw_count;
+   if( ++sw_count >= SW_COUNT_MAX ){
+      periodic_timer_stop();
+   }
 }
 
 ISR(INT0_vect){

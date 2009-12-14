@@ -1,10 +1,7 @@
-#include <stdint.h>
-#include <avr/io.h>
 #include "macro.h"
 #include "switch.h"
+#include "switch_controller.h"
 #include "timer.h"
-
-#define SW_COUNT_MAX 15
 
 volatile uint8_t sw_count = 0;
 volatile uint8_t sw_next_state = SW_ON;
@@ -25,7 +22,6 @@ void sw_init(){
 uint8_t sw_get(){
    static uint8_t confirmed = SW_OFF;
    if( sw_count >= SW_COUNT_MAX ){
-      periodic_timer_stop();
       sw_count = 0;
       confirmed = (sw_now == SW_PH_ON) ? SW_ON : SW_OFF;
       return confirmed;

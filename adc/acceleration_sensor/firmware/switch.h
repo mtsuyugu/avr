@@ -1,15 +1,14 @@
 #ifndef SWITCH_H
 #define SWITCH_H
 
-// logical state
-#define SW_OFF 0
-#define SW_ON 1
-#define SW_OFF_CONT 2
-#define SW_ON_CONT 3
+#include "common.h"
 
 // physical level
 #define SW_PH_ON 0  // active low
 #define SW_PH_OFF 1
+
+#define SW_COUNT_MAX 15
+
 
 void sw_init();
 uint8_t sw_get();

@@ -4,17 +4,17 @@
  * License: <insert your license reference here>
  */
 
-#include <stddef.h>
-#include <stdint.h>
-#include <avr/io.h>
 #include <avr/interrupt.h>
 
-#include "adc.h"
+#include "common.h"
+#include "macro.h"
 #include "timer.h"
 #include "switch.h"
+#include "adc.h"
 #include "lcd.h"
 #include "led.h"
-#include "macro.h"
+#include "switch_controller.h"
+#include "adc_controller.h"
 
 /* F_CPU defined in Makefile
 #define F_CPU 1000000
@@ -39,40 +39,20 @@ int main(void) {
    lcd_position(0,0);
    lcd_put_str("X    Y    Z");
    led_set(1);
-   static uint8_t adc_on = 0;
+   switch_controller_add_handler( SW_ON, adc_controller_handle_switch );
+
    sei();
 
    /* main loop */
    while(1){
-      uint8_t sw_status = sw_get();
-      switch( sw_status ){
-      case SW_ON:
-         // switch ON
-         adc_on ^= 1;
-         if( adc_on ){
-            led_set(1);
-            adc_start(NEXT_AXIS);
-         }
-         else{
-            led_set(0);
-            adc_stop();
-         }
+      if( switch_controller_main() ){
          continue;
-      case SW_OFF:
-         break;
-      case SW_ON_CONT:
-         break;
-      case SW_OFF_CONT:
-         break;
-      default:
-         break; /* never reached */
       }
       if( lcd_has_data_to_display() ){
          lcd_display();
          continue;
       }
-      if( adc_on && (ADCSRA & _BV(ADSC)) == 0 ){
-         adc_start(NEXT_AXIS);
+      if( adc_controller_start_conversion() ){
          continue;
       }
    }

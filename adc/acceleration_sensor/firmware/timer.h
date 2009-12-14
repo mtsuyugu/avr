@@ -1,7 +1,7 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-#include <stdint.h>
+#include "common.h"
 
 /* 2msec timer */
 void periodic_timer_init(void);
