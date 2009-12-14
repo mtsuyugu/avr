@@ -21,8 +21,6 @@
 */
 
 // configuration
-#define BPM 180
-#define SCORE SCORE_DAISYBELL
 #define JTAGDISABLED
 
 int main(void) {
